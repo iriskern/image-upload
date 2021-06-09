@@ -1,13 +1,13 @@
 import styled from 'styled-components/macro'
 import Image from './Image'
 
-export function Gallery({ photos }) {
+export function Gallery({ photos, onDelete }) {
   return (
-    <Wrapper>
-      {photos.map(photo => (
-        <Image key={photo.id} src={photo.url} alt="" />
-      ))}
-    </Wrapper>
+      <Wrapper>
+        {photos.map(photo => (
+            <Image key={photo.id} {...photo} onDelete={onDelete} />
+        ))}
+      </Wrapper>
   )
 }
 

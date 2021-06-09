@@ -31,10 +31,17 @@ public class PhotoController {
     }
 
     @PostMapping("upload")
-    public Photo uploadImage (@RequestParam MultipartFile image) throws IOException {
+    public Photo uploadImage(@RequestParam MultipartFile image) throws IOException {
         File fileToUpload = File.createTempFile("photo", null);
         image.transferTo(fileToUpload);
-        return cloudinaryService.uploadImage(fileToUpload);
+        Photo photoToSave = cloudinaryService.uploadImage(fileToUpload);
+        return photoService.savePhoto(photoToSave);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePhoto(@PathVariable String id) throws IOException {
+        cloudinaryService.deletePhoto(id);
+        photoService.deletePhoto(id);
     }
 
 }

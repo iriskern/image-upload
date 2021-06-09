@@ -18,7 +18,15 @@ public class PhotoService {
     }
 
     public List<Photo> findAll() {
+
         return repository.findAll();
     }
 
+    public Photo savePhoto(Photo photoToSave) {
+        return repository.save(photoToSave);
+    }
+
+    public void deletePhoto(String id){
+        repository.deleteById(id);
+    }
 }
